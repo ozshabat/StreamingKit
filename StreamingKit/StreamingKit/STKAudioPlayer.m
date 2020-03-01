@@ -764,6 +764,11 @@ static void AudioFileStreamPacketsProc(void* clientData, UInt32 numberBytes, UIn
 	[self setDataSource:[STKAudioPlayer dataSourceFromURL:url] withQueueItemId:queueItemId];
 }
 
+-(void) playStream:(CFReadStreamRef)readStream {
+    STKDataSource *dataSource = [[STKInputStreamDataSource alloc] initWithStream:readStream];
+    [self playDataSource:dataSource withQueueItemID:dataSource];
+}
+
 -(void) playDataSource:(STKDataSource*)dataSource
 {
 	[self playDataSource:dataSource withQueueItemID:dataSource];
